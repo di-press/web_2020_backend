@@ -9,3 +9,5 @@ rodando o backend:
 3- npm i cors --save
 4- npm i nodemon --save
 5- npm run start
+
+Acessar o site executando o projeto do frontend. Não fechar o terminal deste projeto (backend).
