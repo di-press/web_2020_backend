@@ -41,8 +41,8 @@ const produtoService = {
 
     findByColor: async() => {
 
-        //const produtos = await Produto.find({ cor: 'Azul' }).exec();
-        const produtos = await Produto.find({ cor: 'Azul' });
+        const produtos = await Produto.find({ cor: 'Azul' }).exec();
+        //const produtos = await Produto.find({ cor: 'Azul' });
 
 
         return produtos;
