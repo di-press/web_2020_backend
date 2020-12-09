@@ -1,5 +1,4 @@
 const authService = require('../services/auth.service'); 
-const User = require('../models/user.model');
 
 const authController = {
     signup: async(req, res) => {
@@ -30,7 +29,9 @@ const authController = {
         const senha = req.body.senha;
 
         // checa se o usuário está cadastrado no banco:
-        const user = await User.findOne({ email: email }).exec();
+        //const user = await User.findOne({ email: email }).exec();
+
+        const user = await authService.signin(email, senha);
      
 
         if(!user){

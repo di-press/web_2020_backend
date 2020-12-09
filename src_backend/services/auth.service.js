@@ -1,4 +1,18 @@
 const User = require('../models/user.model');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+function formatResponse(user){
+    
+    const token = jwt.sign({ userId: user.id }, 'shhhhh');
+
+    return{
+        user: {
+            email: user.email,
+        },
+        token
+    };
+}
 
 const userService = {
 
@@ -11,11 +25,14 @@ const userService = {
         if(user){
             return null;
         }
+
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(senha, salt);
         
         const createdUser = await User.create({ 
         
             email,
-            senha,
+            senha: hash,
             cpf,
             nome,
             id_usuario,
@@ -25,7 +42,7 @@ const userService = {
             
         });
 
-        return createdUser;
+        return formatResponse(createdUser);
     
     },
 
@@ -34,12 +51,18 @@ const userService = {
         
         const user = await User.findOne({ email : email });
 
-        // caso o usuário digite uma senha incorreto, retorna-se null:
-        if(user.senha !== senha ){
+        if (!user){
+            console.log("usuario  nao encontrado - auth.service.js");
             return null;
         }
 
-        return user;
+        // caso o usuário digite uma senha incorreto, retorna-se null:
+        if(!bcrypt.compareSync(senha, user.senha)){
+            console.log("senhas diferentes")
+            return null;
+        }
+
+        return formatResponse(user);
     
     }
 

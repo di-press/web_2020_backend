@@ -8,6 +8,8 @@ rodando o backend:
 2- npm i axios --save
 3- npm i cors --save
 4- npm i nodemon --save
-5- npm run start
+5- npm i bcrypt --save
+6- npm install jsonwebtoken
+7- npm run start
 
 Acessar o site executando o projeto do frontend. Não fechar o terminal deste projeto (backend).
