@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 function formatResponse(user){
     
-    const token = jwt.sign({ userId: user.id }, 'shhhhh');
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_PRIVATE_KEY);
 
     return{
         user: {
