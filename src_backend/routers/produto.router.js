@@ -17,4 +17,6 @@ router.put('/:id',produtoController.updateById);
 
 router.delete('/:id',produtoController.deleteById);
 
+router.get('/findByColor', produtoController.findByColor);
+
 module.exports = router;

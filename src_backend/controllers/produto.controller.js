@@ -26,7 +26,14 @@ const produtoController = {
         const produtos = await produtoService.find();
         // find all documents
       
-          return res.json(produtos);
+        return res.json(produtos);
+    },
+
+    findByColor: async(req, res) => {
+
+        const produtos = await produtoService.findByColor();
+
+        return res.json(produtos);
     },
 
     updateById: async(req, res) => {
