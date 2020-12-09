@@ -1,4 +1,5 @@
 const produtoService = require('../services/produto.service'); 
+//const cor_buscada = "Azul";
 
 const produtoController = {
     create: async(req, res) => {
@@ -6,7 +7,7 @@ const produtoController = {
         //const text = req.body.text;
         //const name = req.body.name;
       
-        const{name, id_produto, preco_produto, unidades_estoque, unidades_vendidas, cor, tam_produto, categoria_produto, foto, descricao_produto, descricao_foto} = req.body;
+        const{name, id_produto, preco_produto, unidades_estoque, unidades_vendidas, cor, tam_produto, categoria_produto, foto, descricao_produto, descricao_foto, categoria} = req.body;
         
         const createdProduto = await produtoService.create(name, id_produto, preco_produto, unidades_estoque, unidades_vendidas, cor, tam_produto, categoria_produto, foto, descricao_produto, descricao_foto);
 
@@ -30,11 +31,35 @@ const produtoController = {
     },
 
     findByColor: async(req, res) => {
+ 
+      const produtos = await produtoService.findByColor();
 
-        const produtos = await produtoService.findByColor();
-
-        return res.json(produtos);
+      return res.json(produtos);
     },
+
+
+    findNovidades: async(req, res) => {
+ 
+      const produtos = await produtoService.findNovidades();
+
+      return res.json(produtos);
+    },
+
+    findPromocoes: async(req, res) => {
+ 
+      const produtos = await produtoService.findPromocoes();
+
+      return res.json(produtos);
+    },
+
+    findExclusivos: async(req, res) => {
+ 
+      const produtos = await produtoService.findExclusivos();
+
+      return res.json(produtos);
+    },
+
+    
 
     updateById: async(req, res) => {
     
