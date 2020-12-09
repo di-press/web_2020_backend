@@ -45,7 +45,15 @@ const authController = {
         
         
         return res.json(user);
-    }
+    },
+
+    find: async(req, res) => {
+  
+        const users = await authService.find();
+        // find all documents
+      
+          return res.json(users);
+    }, 
 
 }
 

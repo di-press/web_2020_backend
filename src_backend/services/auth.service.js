@@ -64,7 +64,15 @@ const userService = {
 
         return formatResponse(user);
     
-    }
+    },
+
+    find: async() => {
+  
+        const users = await User.find({});
+        // find all documents
+      
+        return users;
+    },
 
 }
 
