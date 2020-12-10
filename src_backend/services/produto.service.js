@@ -133,6 +133,46 @@ const produtoService = {
 
     },
 
+    findP: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ tam_produto: "P" }).exec();
+
+
+        return produtos;
+
+    },
+
+    findM: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ tam_produto: "M" }).exec();
+
+
+        return produtos;
+
+    },
+
+    findG: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ tam_produto: "G" }).exec();
+
+
+        return produtos;
+
+    },
+
+    findGG: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ tam_produto: "GG" }).exec();
+
+
+        return produtos;
+
+    },
+
 
     updateById: async(id, name, id_produto, preco_produto, unidades_estoque, unidades_vendidas, cor, tam_produto, categoria_produto, foto, descricao_produto, descricao_foto) => {
           

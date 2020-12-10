@@ -94,6 +94,34 @@ const produtoController = {
       return res.json(produtos);
     },
 
+    findP: async(req, res) => {
+ 
+      const produtos = await produtoService.findP();
+
+      return res.json(produtos);
+    },
+
+    findM: async(req, res) => {
+ 
+      const produtos = await produtoService.findM();
+
+      return res.json(produtos);
+    },
+
+    findG: async(req, res) => {
+ 
+      const produtos = await produtoService.findG();
+
+      return res.json(produtos);
+    },
+
+    findGG: async(req, res) => {
+ 
+      const produtos = await produtoService.findGG();
+
+      return res.json(produtos);
+    },
+
 
     updateById: async(req, res) => {
     

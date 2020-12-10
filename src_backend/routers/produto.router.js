@@ -31,6 +31,14 @@ router.get('/findAmarelo', produtoController.findAmarelo);
 
 router.get('/findPreto', produtoController.findPreto);
 
+router.get('/findP', produtoController.findP);
+
+router.get('/findM', produtoController.findM);
+
+router.get('/findG', produtoController.findG);
+
+router.get('/findGG', produtoController.findGG);
+
 router.get('/', produtoController.find);
     
 router.put('/:id',produtoController.updateById); 
