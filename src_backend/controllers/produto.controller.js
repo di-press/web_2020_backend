@@ -59,7 +59,27 @@ const produtoController = {
       return res.json(produtos);
     },
 
-    
+    findMoletons: async(req, res) => {
+ 
+      const produtos = await produtoService.findMoletons();
+
+      return res.json(produtos);
+    },
+ 
+
+    findCamisetas: async(req, res) => {
+ 
+      const produtos = await produtoService.findCamisetas();
+
+      return res.json(produtos);
+    },
+
+    findShorts: async(req, res) => {
+ 
+      const produtos = await produtoService.findShorts();
+
+      return res.json(produtos);
+    },
 
     updateById: async(req, res) => {
     

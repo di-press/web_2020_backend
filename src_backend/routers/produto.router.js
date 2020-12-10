@@ -18,7 +18,13 @@ router.get('/findNovidades', produtoController.findNovidades);
 router.get('/findPromocoes', produtoController.findPromocoes);
 
 router.get('/findExclusivos', produtoController.findExclusivos);
-   
+
+router.get('/findMoletons', produtoController.findMoletons);
+
+router.get('/findCamisetas', produtoController.findCamisetas);
+
+router.get('/findShorts', produtoController.findShorts);
+
 router.get('/', produtoController.find);
     
 router.put('/:id',produtoController.updateById); 

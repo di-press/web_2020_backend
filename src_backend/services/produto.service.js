@@ -82,7 +82,38 @@ const produtoService = {
         return produtos;
 
     },
+
+    findMoletons: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ categoria_produto: 'Moletons' }).exec();
+
+
+        return produtos;
+
+    },
     
+
+    findCamisetas: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ categoria_produto: 'Camisetas' }).exec();
+
+        return produtos;
+
+    },
+    
+    findShorts: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ categoria_produto: 'Shorts' }).exec();
+
+
+        return produtos;
+
+    },
+    
+
     updateById: async(id, name, id_produto, preco_produto, unidades_estoque, unidades_vendidas, cor, tam_produto, categoria_produto, foto, descricao_produto, descricao_foto) => {
           
         const produto = await Produto.findOneAndUpdate({ _id: id}, {id_produto, name, preco_produto,unidades_estoque, unidades_vendidas, cor,tam_produto, categoria_produto, foto, descricao_produto, descricao_foto}, {new: true}); // returns Query; new : true retorna o novo objeto
