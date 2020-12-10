@@ -40,17 +40,6 @@ const produtoService = {
         return produtos;
     },
 
-   
-    findByColor: async() => {
-
-        //const produtos = await Produto.find({ cor: cor }).exec();
-        const produtos = await Produto.find({ cor: 'Azul' }).exec();
-
-
-        return produtos;
-
-    },
-
     findNovidades: async() => {
 
         //const produtos = await Produto.find({ cor: cor }).exec();
@@ -113,6 +102,37 @@ const produtoService = {
 
     },
     
+
+    findAzul: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ cor: 'Azul' }).exec();
+
+
+        return produtos;
+
+    },
+
+    findAmarelo: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ cor: 'Amarelo' }).exec();
+
+
+        return produtos;
+
+    },
+
+    findPreto: async() => {
+
+        //const produtos = await Produto.find({ cor: cor }).exec();
+        const produtos = await Produto.find({ cor: 'Preto' }).exec();
+
+
+        return produtos;
+
+    },
+
 
     updateById: async(id, name, id_produto, preco_produto, unidades_estoque, unidades_vendidas, cor, tam_produto, categoria_produto, foto, descricao_produto, descricao_foto) => {
           

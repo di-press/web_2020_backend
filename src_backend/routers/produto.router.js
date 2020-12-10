@@ -11,7 +11,7 @@ router.post('/',produtoController.create);
 
 //router.get('/:id', produtoController.findById);
   
-router.get('/findByColor', produtoController.findByColor);
+//router.get('/findByColor', produtoController.findByColor);
 
 router.get('/findNovidades', produtoController.findNovidades);
 
@@ -24,6 +24,12 @@ router.get('/findMoletons', produtoController.findMoletons);
 router.get('/findCamisetas', produtoController.findCamisetas);
 
 router.get('/findShorts', produtoController.findShorts);
+
+router.get('/findAzul', produtoController.findAzul);
+
+router.get('/findAmarelo', produtoController.findAmarelo);
+
+router.get('/findPreto', produtoController.findPreto);
 
 router.get('/', produtoController.find);
     

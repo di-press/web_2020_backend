@@ -30,14 +30,6 @@ const produtoController = {
         return res.json(produtos);
     },
 
-    findByColor: async(req, res) => {
- 
-      const produtos = await produtoService.findByColor();
-
-      return res.json(produtos);
-    },
-
-
     findNovidades: async(req, res) => {
  
       const produtos = await produtoService.findNovidades();
@@ -80,6 +72,28 @@ const produtoController = {
 
       return res.json(produtos);
     },
+
+    findAzul: async(req, res) => {
+ 
+      const produtos = await produtoService.findAzul();
+
+      return res.json(produtos);
+    },
+
+    findAmarelo: async(req, res) => {
+ 
+      const produtos = await produtoService.findAmarelo();
+
+      return res.json(produtos);
+    },
+
+    findPreto: async(req, res) => {
+ 
+      const produtos = await produtoService.findPreto();
+
+      return res.json(produtos);
+    },
+
 
     updateById: async(req, res) => {
     
