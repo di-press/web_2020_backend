@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-  const { Schema } = mongoose;
+  //const { Schema } = mongoose;
 
   const produtoSchema = new mongoose.Schema({
    
@@ -13,7 +13,8 @@ const mongoose = require('mongoose');
     categoria_produto: String,
     foto: String,
     descricao_produto: String,
-    descricao_foto: String
+    descricao_foto: String,
+    
 
   });
 
