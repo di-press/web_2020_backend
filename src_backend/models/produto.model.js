@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
    
     name: String,
     id_produto: String,
-    preco_produto: String,
+    preco_produto: Number,
     unidades_estoque: Number,
     unidades_vendidas: Number, 
     cor: String,
