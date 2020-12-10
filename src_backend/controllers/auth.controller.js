@@ -11,9 +11,12 @@ const authController = {
         const data_nascimento = req.body.data_nascimento;
         const telefone = req.body.telefone;
         const endereco = req.body.endereco;
-
+        const isAdmin = false;
+        if (req.body.tipo && req.body.tipo === 'admin') {
+            isAdmin = true
+          } 
               
-        const createdUser = await authService.signup(email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco);
+        const createdUser = await authService.signup(email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco, isAdmin);
 
         if(!createdUser){
             //significa que o usuário já está cadastrado. Enviar erro(400):

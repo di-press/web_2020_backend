@@ -1,13 +1,14 @@
 //const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
+const authMiddle = require('../midlewares/auth.middle')
 
 const produtoController = require('../controllers/produto.controller');
 
 // abaixo, tem-se uma referência de cada função;
 // exemplo: produtoController.create é uma referência para a função de create
 
-router.post('/',produtoController.create);
+router.post('/', [authMiddle.verifyToken, authMiddle.isAdmin] ,produtoController.create);
 
 //router.get('/:id', produtoController.findById);
   
@@ -41,9 +42,9 @@ router.get('/findGG', produtoController.findGG);
 
 router.get('/', produtoController.find);
     
-router.put('/:id',produtoController.updateById); 
+router.put('/:id', [authMiddle.verifyToken, authMiddle.isAdmin] ,produtoController.updateById); 
 
-router.delete('/:id',produtoController.deleteById);
+router.delete('/:id', [authMiddle.verifyToken, authMiddle.isAdmin] ,produtoController.deleteById);
 
 //router.get('/:id', produtoController.findById);
 

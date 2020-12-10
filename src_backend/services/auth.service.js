@@ -4,8 +4,9 @@ const jwt = require('jsonwebtoken');
 
 function formatResponse(user){
     
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_PRIVATE_KEY);
-
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_PRIVATE_KEY, {
+        expiresIn: 86400 }); // 24 horas tem 86400 segundos
+    
     return{
         user: {
             email: user.email,
@@ -16,7 +17,7 @@ function formatResponse(user){
 
 const userService = {
 
-    signup: async(email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco) => {
+    signup: async(email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco, isAdmin) => {
     
         // vendo se já existe um usuário com este email cadastrado:
         const user = await User.findOne({ email : email });
@@ -38,7 +39,8 @@ const userService = {
             id_usuario,
             data_nascimento,
             telefone, 
-            endereco
+            endereco,
+            isAdmin 
             
         });
 

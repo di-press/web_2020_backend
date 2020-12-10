@@ -10,8 +10,8 @@ const mongoose = require('mongoose');
     id_usuario: String,
     data_nascimento: Date,
     telefone: Number, 
-    endereco: String
-
+    endereco: String,
+    isAdmin: Boolean
   });
 
 const User = mongoose.model('User', userSchema);
