@@ -55,6 +55,35 @@ const authController = {
           return res.json(users);
     }, 
 
+    updateById: async(req, res) => {
+  
+        // este é o id do banco:
+        const id = req.params.id;
+        const email = req.body.email;
+        const senha = req.body.senha;
+        const cpf = req.body.cpf;
+        const nome = req.body.name;
+        const id_usuario = req.body.id_usuario;
+        const data_nascimento = req.body.data_nascimento;
+        const telefone = req.body.telefone;
+        const endereco = req.body.endereco;
+         
+          
+        const user = await authService.updateById(id, email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco); // returns Query; new : true retorna o novo objeto
+          
+        return res.json(user);
+    },
+
+    deleteById: async(req, res) => {
+  
+        const id = req.params.id;
+          
+        const user = await authService.deleteById(id); 
+          
+        return res.json(user);
+    }
+
+
 }
 
 module.exports = authController;

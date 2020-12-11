@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
     cpf: String,
     nome: String,
     id_usuario: String,
-    data_nascimento: Date,
+    data_nascimento: String,
     telefone: Number, 
     endereco: String
 
