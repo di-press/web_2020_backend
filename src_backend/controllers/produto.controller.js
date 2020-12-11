@@ -138,7 +138,7 @@ const produtoController = {
         const descricao_produto = req.body.descricao_produto;
         const descricao_foto = req.body.descricao_foto;
           
-        const produto = await produtoService.updateById(id, id_produto, name, preco_produto,unidades_estoque, unidades_vendidas, cor,tam_produto, categoria_produto, foto, descricao_produto, descricao_foto); // returns Query; new : true retorna o novo objeto
+        const produto = await produtoService.updateById(id, name, id_produto, preco_produto,unidades_estoque, unidades_vendidas, cor,tam_produto, categoria_produto, foto, descricao_produto, descricao_foto); // returns Query; new : true retorna o novo objeto
           
         return res.json(produto);
     },
