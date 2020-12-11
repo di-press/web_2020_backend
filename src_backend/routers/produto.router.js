@@ -9,7 +9,7 @@ const produtoController = require('../controllers/produto.controller');
 
 router.post('/',produtoController.create);
 
-router.get('/:id', produtoController.findById);
+//router.get('/:id', produtoController.findById);
 
 router.get('/findNovidades', produtoController.findNovidades);
 
