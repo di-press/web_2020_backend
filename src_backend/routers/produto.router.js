@@ -9,9 +9,7 @@ const produtoController = require('../controllers/produto.controller');
 
 router.post('/',produtoController.create);
 
-//router.get('/:id', produtoController.findById);
-  
-//router.get('/findByColor', produtoController.findByColor);
+router.get('/:id', produtoController.findById);
 
 router.get('/findNovidades', produtoController.findNovidades);
 
@@ -45,6 +43,6 @@ router.put('/:id',produtoController.updateById);
 
 router.delete('/:id',produtoController.deleteById);
 
-//router.get('/:id', produtoController.findById);
+router.get('/:id', produtoController.findById);
 
 module.exports = router;
