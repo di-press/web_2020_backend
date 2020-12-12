@@ -76,7 +76,7 @@ const userService = {
 
     updateById: async(id, email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco) => {
           
-        const user = await User.findOneAndUpdate({ _id: id}, {email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco}); // returns Query; new : true retorna o novo objeto
+        const user = await User.findOneAndUpdate({ _id: id}, {email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco},{new: true}); // returns Query; new : true retorna o novo objeto
           
         return user;
     },

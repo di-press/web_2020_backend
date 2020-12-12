@@ -15,4 +15,6 @@ router.put('/:id',authController.updateById);
 router.delete('/:id',authController.deleteById);
 
 
+
+
 module.exports = router;
