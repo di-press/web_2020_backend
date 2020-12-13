@@ -11,7 +11,6 @@ function formatResponse(user){
             isAdmin: user.isAdmin,
             email: user.email
         },
-        tokenExpires: 86400,
         token
     };
 }

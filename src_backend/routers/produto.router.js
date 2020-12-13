@@ -40,9 +40,9 @@ router.get('/findGG', produtoController.findGG);
 
 router.get('/', produtoController.find);
     
-router.put('/:id', [authMiddle.verifyToken, authMiddle.isAdmin] ,produtoController.updateById); 
+router.put('/:id', [authMiddle.verifyToken] ,produtoController.updateById); 
 
-router.delete('/:id', [authMiddle.verifyToken, authMiddle.isAdmin] ,produtoController.deleteById);
+router.delete('/:id', [authMiddle.verifyToken] ,produtoController.deleteById);
 
 router.get('/:id', produtoController.findById);
 
