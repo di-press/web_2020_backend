@@ -3,16 +3,20 @@ const express = require('express');
 const router = express.Router();
 
 const authController = require('../controllers/auth.controller');
+const authMiddle = require('../midlewares/auth.middle')
+
 
 router.post('/signup', authController.signup);
 
 router.post('/signin', authController.signin);
 
-router.get('/find', authController.find);
+router.post('/create', [authMiddle.verifyToken, authMiddle.isAdmin], authController.create);
 
-router.put('/:id',authController.updateById); 
+router.get('/find', [authMiddle.verifyToken, authMiddle.isAdmin], authController.find);
 
-router.delete('/:id',authController.deleteById);
+router.put('/:id', [authMiddle.verifyToken, authMiddle.isAdmin], authController.updateById); 
+
+router.delete('/:id', [authMiddle.verifyToken, authMiddle.isAdmin] ,authController.deleteById);
 
 
 

@@ -4,81 +4,71 @@ const jwt = require('jsonwebtoken');
 
 function formatResponse(user){
     
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_PRIVATE_KEY);
-
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_PRIVATE_KEY);
+      
     return{
         user: {
-            email: user.email,
+            isAdmin: user.isAdmin,
+            email: user.email
         },
+        tokenExpires: 86400,
         token
     };
 }
 
 const userService = {
-
-    signup: async(email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco) => {
     
+    signup: async (email, senha, cpf, nome, data_nascimento, telefone, endereco, isAdmin) => {
         // vendo se já existe um usuário com este email cadastrado:
         const user = await User.findOne({ email : email });
-
         // se o usuário já existe, não devemos criar uma nova conta:
         if(user){
             return null;
         }
-
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(senha, salt);
-        
         const createdUser = await User.create({ 
-        
             email,
             senha: hash,
             cpf,
             nome,
-            id_usuario,
             data_nascimento,
             telefone, 
-            endereco
-            
+            endereco,
+            isAdmin 
         });
-
         return formatResponse(createdUser);
-    
     },
 
     signin: async(email, senha) => {
-
-        
         const user = await User.findOne({ email : email });
-
         if (!user){
-            console.log("usuario  nao encontrado - auth.service.js");
             return null;
         }
-
         // caso o usuário digite uma senha incorreto, retorna-se null:
         if(!bcrypt.compareSync(senha, user.senha)){
             console.log("senhas diferentes")
             return null;
         }
-
         return formatResponse(user);
-    
     },
 
     find: async() => {
-  
         const users = await User.find({});
-        // find all documents
-      
         return users;
     },
 
-    updateById: async(id, email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco) => {
-          
-        const user = await User.findOneAndUpdate({ _id: id}, {email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco},{new: true}); // returns Query; new : true retorna o novo objeto
-          
-        return user;
+    updateById: async(edited) => {
+        const user = await User.findOne({ _id: edited._id})
+        if (user.senha === edited.senha) {
+            delete edited.senha
+        } else {
+            const salt = bcrypt.genSaltSync(10)
+            const hash = bcrypt.hashSync(edited.senha, salt)
+            edited.senha = hash
+        }
+        const editedUser = await User.findOneAndUpdate({ _id: edited._id}, edited, {new: true})
+        return editedUser;
     },
 
     deleteById: async(id) => {
@@ -87,7 +77,6 @@ const userService = {
           
         return user;
     }
-
 
 }
 

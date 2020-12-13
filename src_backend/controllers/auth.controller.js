@@ -7,20 +7,23 @@ const authController = {
         const senha = req.body.senha;
         const cpf = req.body.cpf;
         const nome = req.body.nome;
-        const id_usuario = req.body.id_usuario;
         const data_nascimento = req.body.data_nascimento;
         const telefone = req.body.telefone;
         const endereco = req.body.endereco;
+        const isAdmin = false;
+        
+        if (req.body.isAdmin && req.body.isAdmin) {
+            isAdmin = true
+        } 
 
-              
-        const createdUser = await authService.signup(email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco);
-
-        if(!createdUser){
+        const createdUser = await authService.signup(email, senha, cpf,
+            nome, data_nascimento, telefone, endereco, isAdmin);
+        
+        if (!createdUser) {
             //significa que o usuário já está cadastrado. Enviar erro(400):
             return res.status(400).json();
         }
-
-        return res.json(createdUser);
+        return res.status(200).json(createdUser);
     },
 
     signin: async(req, res) => {
@@ -44,7 +47,7 @@ const authController = {
         //testar se a senha confere!
         
         
-        return res.json(user);
+        return res.status(200).json(user);
     },
 
     find: async(req, res) => {
@@ -55,31 +58,36 @@ const authController = {
           return res.json(users);
     }, 
 
-    updateById: async(req, res) => {
-  
-        // este é o id do banco:
-        const id = req.params.id;
-        const email = req.body.email;
-        const senha = req.body.senha;
-        const cpf = req.body.cpf;
-        const nome = req.body.nome;
-        const id_usuario = req.body.id_usuario;
-        const data_nascimento = req.body.data_nascimento;
-        const telefone = req.body.telefone;
-        const endereco = req.body.endereco;
-         
-          
-        const user = await authService.updateById(id, email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco); // returns Query; new : true retorna o novo objeto
-          
+    updateById: async (req, res) => {
+        
+        const user = await authService.updateById(req.body);
         return res.json(user);
     },
 
+    create: async (req, res) => {
+        if (!req.body.isAdmin) {
+            req.body.isAdmin = false
+        }
+        createdUser = await authService.signup(
+            req.body.email,
+            req.body.senha,
+            req.body.cpf,
+            req.body.nome,
+            req.body.data_nascimento,
+            req.body.telefone,
+            req.body.endereco,
+            req.body.isAdmin
+        )
+        if (createdUser) {
+            return res.status(200).json()
+        } else {
+            return res.status(400).json()
+        }
+    },
+
     deleteById: async(req, res) => {
-  
         const id = req.params.id;
-          
         const user = await authService.deleteById(id); 
-          
         return res.json(user);
     }
 

@@ -7,11 +7,10 @@ const mongoose = require('mongoose');
     senha: String,
     cpf: String,
     nome: String,
-    id_usuario: String,
     data_nascimento: String,
     telefone: String, 
-    endereco: String
-
+    endereco: String,
+    isAdmin: Boolean,
   });
 
 const User = mongoose.model('User', userSchema);
