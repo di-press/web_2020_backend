@@ -65,7 +65,6 @@ const authController = {
     },
 
     create: async (req, res) => {
-        //console.log(req.body)
         if (!req.body.isAdmin) {
             req.body.isAdmin = false
         }
