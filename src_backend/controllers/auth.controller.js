@@ -3,27 +3,28 @@ const authService = require('../services/auth.service');
 const authController = {
     signup: async(req, res) => {
 
+        console.log(req)
+
         const email = req.body.email;
         const senha = req.body.senha;
         const cpf = req.body.cpf;
         const nome = req.body.nome;
-        const id_usuario = req.body.id_usuario;
+        
         const data_nascimento = req.body.data_nascimento;
         const telefone = req.body.telefone;
         const endereco = req.body.endereco;
         const isAdmin = false;
         if (req.body.tipo && req.body.tipo === 'admin') {
             isAdmin = true
-          } 
-              
-        const createdUser = await authService.signup(email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco, isAdmin);
+        } 
+        const createdUser = await authService.signup(email, senha, cpf, nome, data_nascimento, telefone, endereco, isAdmin);
 
         if(!createdUser){
             //significa que o usuário já está cadastrado. Enviar erro(400):
             return res.status(400).json();
         }
 
-        return res.json(createdUser);
+        return res.status(200).json(createdUser);
     },
 
     signin: async(req, res) => {
@@ -47,7 +48,7 @@ const authController = {
         //testar se a senha confere!
         
         
-        return res.json(user);
+        return res.status(200).json(user);
     },
 
     find: async(req, res) => {
