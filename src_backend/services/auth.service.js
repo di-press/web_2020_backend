@@ -55,8 +55,6 @@ const userService = {
 
     find: async() => {
         const users = await User.find({});
-        for (const user in users) {
-        }
         return users;
     },
 
