@@ -10,7 +10,7 @@ verifyToken = (req, res, next) => {
     return res.status(403).send({ message: "Não está autenticado" });
   }
 
-  jwt.verify(token, 'jwtsecret', (err, decoded) => {
+  jwt.verify(token, process.env.JWT_PRIVATE_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: "Token invalido" });
     }
@@ -21,11 +21,8 @@ verifyToken = (req, res, next) => {
 };
 
  isAdmin = async (req, res, next) => {
-  console.log('user id eh')
   console.log(req.userId)
   const user = await User.findOne({_id: req.userId})
-  console.log('buscando usuario')
-  console.log(user)
   if (user && user.isAdmin) {
     next();
     return
