@@ -10,7 +10,7 @@ const apiRouter = require("./routers");
 
 const app = express();
 //utilizando a porta atual que está contida no arquivo ".env" deste projeto:
-const port = process.env.PORT;
+const port = 3000
 
 app.use(express.json()); // for parsing application/json
 // o express inicializa o node:
@@ -23,13 +23,17 @@ app.use(cors());
 
 app.use('/api', apiRouter);
 
-
-mongoose.connect(process.env.DB_URL, {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/dbTeste2', {useNewUrlParser: true});
 const db = mongoose.connection;
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   // we're connected!
 });
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-  });
+// cria um admin
+const authService = require('./services/auth.service'); 
+authService.signup('admin', 'admin', '', '', '', '', '', true);
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});

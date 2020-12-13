@@ -4,11 +4,15 @@ const jwt = require('jsonwebtoken');
 
 function formatResponse(user){
     
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_PRIVATE_KEY);
-
+    //const token = jwt.sign({ userId: user.id }, process.env.JWT_PRIVATE_KEY);
+    const token = jwt.sign({ userId: user._id }, 'jwtsecret', {
+        expiresIn: 86400 // 24 hours
+      });
+      
     return{
         user: {
-            email: user.email,
+            isAdmin: user.isAdmin,
+            email: user.email
         },
         token
     };
@@ -16,11 +20,9 @@ function formatResponse(user){
 
 const userService = {
 
-    signup: async(email, senha, cpf, nome, id_usuario, data_nascimento, telefone, endereco) => {
-    
+    signup: async(email, senha, cpf, nome, data_nascimento, telefone, endereco, isAdmin) => {
         // vendo se já existe um usuário com este email cadastrado:
         const user = await User.findOne({ email : email });
-
         // se o usuário já existe, não devemos criar uma nova conta:
         if(user){
             return null;
@@ -35,10 +37,10 @@ const userService = {
             senha: hash,
             cpf,
             nome,
-            id_usuario,
             data_nascimento,
             telefone, 
-            endereco
+            endereco,
+            isAdmin 
             
         });
 
@@ -48,7 +50,7 @@ const userService = {
 
     signin: async(email, senha) => {
 
-        
+        console.log(email)
         const user = await User.findOne({ email : email });
 
         if (!user){
